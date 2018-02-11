@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LINQ.Exercises
@@ -15,7 +12,7 @@ namespace LINQ.Exercises
     /// </summary>
 
     [TestClass]
-    class CombinedOperations
+    public class CombinedOperations
     {
         // we have a list of people
         // we have their first names
@@ -25,11 +22,15 @@ namespace LINQ.Exercises
         // Hint: try to use set operations.
         // There are many ways to solve this.
         [TestMethod]
+        [TestCategory("900-CombinedOperations")]
+        [Ignore]
         public void GetCharactersCommonToEveryonesFirstNamesUsingSetElements_ReturnCharEnumerable()
         {
-            List<char> commonCharacters = new List<char>(); // please edit/complete so that the test passes
+            // ReSharper disable CollectionNeverUpdated.Local
+            var commonCharacters = new List<char>(); // please edit/complete so that the test passes
+            // ReSharper restore CollectionNeverUpdated.Local
 
-            Assert.IsTrue(commonCharacters.OrderBy(x => x).SequenceEqual(new char[] { 'a', 'i', 'J' }.OrderBy(x => x)));
+            Assert.IsTrue(commonCharacters.OrderBy(x => x).SequenceEqual(new[] { 'a', 'i', 'J' }.OrderBy(x => x)));
         }
 
         // Bonus Question
@@ -39,11 +40,13 @@ namespace LINQ.Exercises
         // to all the first names names
         // But you are not allowed to use set operations.
         [TestMethod]
+        [TestCategory("900-CombinedOperations")]
+        [Ignore]
         public void GetCharactersCommonToEveryonesFirstNamesNotUsingSetOperations_ReturnCharEnumerable()
         {
             IEnumerable<char> result = new List<char>();
 
-            Assert.IsTrue(result.OrderBy(x => x).SequenceEqual(new char[] { 'a', 'i', 'J' }.OrderBy(x => x)));
+            Assert.IsTrue(result.OrderBy(x => x).SequenceEqual(new[] { 'a', 'i', 'J' }.OrderBy(x => x)));
         }
 
     }

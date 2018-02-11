@@ -12,6 +12,7 @@ namespace LINQ.Exercises
     public class Element
     {
         [TestMethod]
+        [TestCategory("180-Element")]
         public void First_n()
         {
             // First test is solved to show you how to use these exercises.
@@ -21,6 +22,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void First_n_less_than_0()
         {
             int result = TestData.Numbers.First();
@@ -29,6 +32,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void Last_n_greater_than_0()
         {
             int result = TestData.Numbers.Last();
@@ -37,6 +42,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void First_even_n()
         {
             int result = TestData.Numbers.First();
@@ -45,6 +52,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void Last_even_n()
         {
             int result = TestData.Numbers.Last();
@@ -53,6 +62,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void First_n_greater_than_10_if_not_found_return_0()
         {
             int result = TestData.Numbers.First();
@@ -61,6 +72,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void Last_n_less_than_minus_1234_if_not_found_return_0()
         {
             int result = TestData.Numbers.Last();
@@ -69,6 +82,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void Last_elephant()
         {
             string result = TestData.Animals.Last();
@@ -77,6 +92,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void First_string_having_4_letters()
         {
             string result = TestData.Animals.First();
@@ -85,6 +102,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void Last_string_containg_g()
         {
             string result = TestData.Animals.Last();
@@ -93,6 +112,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void First_string_having_s_as_first_letter()
         {
             string result = TestData.Animals.First();
@@ -101,6 +122,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void Last_three_letter_long_word_or_null()
         {
             string result = TestData.Animals.Last(s => s.Length == 3);
@@ -109,6 +132,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void First_person_born_after_2000()
         {
             TestData.Person result = TestData.People.First();
@@ -117,6 +142,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void Last_person_with_lastname_ending_with_l()
         {
             TestData.Person result = TestData.People.Last();
@@ -125,6 +152,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void First_person_born_141th_day_of_year()
         {
             TestData.Person result = TestData.People.First();
@@ -133,6 +162,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("180-Element")]
+        [Ignore]
         public void Last_person_whose_firstname_does_not_start_with_J_or_null()
         {
             TestData.Person result = TestData.People.Last();

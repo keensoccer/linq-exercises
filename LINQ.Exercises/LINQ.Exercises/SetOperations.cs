@@ -22,60 +22,78 @@ namespace LINQ.Exercises
         // above array
 
         [TestMethod]
+        [TestCategory("160-SetOperations")]
+        [Ignore]
         public void GetDistinctNumbers_ReturnIEnumerable()
         {
             int[] randomNumbers = { 2, 2, 3, 5, 5, 2, 3, 4, 6, 4, 3, 8, 7, 5, 9, 4, 6, 3, 6, 34, 2, 2, 5, 7, 5, 4, 2, 6, 67, 5 };
 
             IEnumerable<int> result = randomNumbers;
 
-            Assert.IsTrue(result.SequenceEqual(new int[] { 2, 3, 5, 4, 6, 8, 7, 9, 34, 67 }));
+            Assert.IsTrue(result.SequenceEqual(new[] { 2, 3, 5, 4, 6, 8, 7, 9, 34, 67 }));
         }
 
         // get the unique numbers
         // from both arrays combined
         // in ascending order from 1...9
         [TestMethod]
+        [TestCategory("160-SetOperations")]
+        [Ignore]
         public void GetUniqueNumbersFromTwoArraysInAscendingOrder_ReturnEnumerable()
         {
             int[] numbersA = { 0, 2, 4, 5, 6, 8, 9 };
+            // ReSharper disable UnusedVariable
             int[] numbersB = { 1, 3, 5, 7, 8 };
+            // ReSharper restore UnusedVariable
 
             IEnumerable<int> result = numbersA;
 
-            Assert.IsTrue(result.SequenceEqual(new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }));
+            Assert.IsTrue(result.SequenceEqual(new[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 }));
         }
 
         [TestMethod]
+        [TestCategory("160-SetOperations")]
+        [Ignore]
         public void GetCommonValuesSharedByBothArrays_ReturnEnumerable()
         {
             int[] numbersA = { 0, 2, 4, 5, 6, 8, 9 };
+            // ReSharper disable UnusedVariable
             int[] numbersB = { 1, 3, 5, 7, 8 };
+            // ReSharper restore UnusedVariable
 
             IEnumerable<int> result = numbersA;
 
-            Assert.IsTrue(result.SequenceEqual(new int[] { 5, 8 }));
+            Assert.IsTrue(result.SequenceEqual(new[] { 5, 8 }));
         }
-               
+
         [TestMethod]
+        [TestCategory("160-SetOperations")]
+        [Ignore]
         public void GetNumbersInFirstArrayThatAreNotAlsoInSecondArray_ReturnIenumerableInt()
         {
             int[] numbersA = { 0, 2, 4, 5, 6, 8, 9 };
+            // ReSharper disable UnusedVariable
             int[] numbersB = { 1, 3, 5, 7, 8 };
+            // ReSharper restore UnusedVariable
 
             IEnumerable<int> result = numbersA;
 
-            Assert.IsTrue(result.OrderBy(x => x).SequenceEqual(new int[] { 0, 2, 4, 6, 9 }.OrderBy(x => x)));
+            Assert.IsTrue(result.OrderBy(x => x).SequenceEqual(new[] { 0, 2, 4, 6, 9 }.OrderBy(x => x)));
         }
 
         [TestMethod]
+        [TestCategory("160-SetOperations")]
+        [Ignore]
         public void GetStringsInFirstArrayThatAreNotAlsoInSecondArray_ReturnIenumerableString()
         {
             string[] lettersA = { "a", "b", "c", "d", "e" };
+            // ReSharper disable UnusedVariable
             string[] lettersB = { "a", "c", "e" };
+            // ReSharper restore UnusedVariable
 
             IEnumerable<string> result = lettersA;
 
-            Assert.IsTrue(result.OrderBy(x => x).SequenceEqual(new string[] { "b", "d" }));
+            Assert.IsTrue(result.OrderBy(x => x).SequenceEqual(new[] { "b", "d" }));
         }
     }
 }

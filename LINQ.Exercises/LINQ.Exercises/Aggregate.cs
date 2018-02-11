@@ -13,6 +13,7 @@ namespace LINQ.Exercises
     public class Aggregate
     {
         [TestMethod]
+        [TestCategory("210-Aggregate")]
         public void Count_all_numbers()
         {
             // First test is solved to show you how to use these exercises.
@@ -22,6 +23,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Count_all_occurences_of_1()
         {
             int result = TestData.Numbers.Count();
@@ -30,6 +33,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Count_all_animals_having_character_count_equal_to_5()
         {
             // Hint: use nested count
@@ -39,6 +44,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Sum_all_numbers()
         {
             int result = TestData.Numbers.Count();
@@ -47,6 +54,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Sum_all_characters_in_animal_names()
         {
             int result = TestData.Animals.Count();
@@ -55,6 +64,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Sum_all_birth_years()
         {
             int result = TestData.People.Count();
@@ -63,6 +74,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Find_minimum_number()
         {
             int result = TestData.Numbers.Count();
@@ -71,6 +84,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Find_length_of_shortest_animal_name()
         {
             int result = TestData.Animals.Count();
@@ -79,6 +94,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Find_earliest_birthday()
         {
             DateTime result = TestData.People.First().Born;
@@ -87,6 +104,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Find_maximum_number()
         {
             int result = TestData.Numbers.Count();
@@ -95,6 +114,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Find_length_of_longest_animal_name()
         {
             int result = TestData.Animals.Count();
@@ -103,6 +124,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Find_latest_birthday()
         {
             DateTime result = TestData.People.First().Born;
@@ -111,6 +134,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Find_average_of_numbers()
         {
             double result = TestData.Numbers.Count();
@@ -119,6 +144,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Find_average_of_birth_years()
         {
             double result = TestData.People.Count();
@@ -127,6 +154,7 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
         public void Aggregate_Sum_of_all_numbers()
         {
             // Aggregate is a little bit more complicated
@@ -137,6 +165,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Aggregate_Product_of_all_numbers()
         {
             // Hint: product is a result of multiplication
@@ -146,6 +176,8 @@ namespace LINQ.Exercises
         }
 
         [TestMethod]
+        [TestCategory("210-Aggregate")]
+        [Ignore]
         public void Aggregate_Secret_formula()
         {
             // secret formula is as follows
