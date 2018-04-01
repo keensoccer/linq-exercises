@@ -37,19 +37,19 @@ namespace LINQ.Exercises
         // starting from a to z - order ascending
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void OrderWordsAlphabetically_Return5Words()
         {
-            IEnumerable<string> result = TestData.OrderByWordsExtended;
+            IEnumerable<string> result = TestData.OrderByWordsExtended.OrderBy(word => word)
+                                                                       .Take(5);
             Assert.IsTrue(result.SequenceEqual(new[] { "apple", "blueberry", "cherry", "tamarind", "zuchini" }));
         }
 
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void OrderWordsBySecondLetter_Return5Words()
         {
-            IEnumerable<string> result = TestData.OrderByWordsExtended;
+            IEnumerable<string> result = TestData.OrderByWordsExtended.OrderBy(word => word[1])
+                                                                      .Take(5);
 
             Assert.IsTrue(result.SequenceEqual(new[] { "tamarind", "cherry", "blueberry", "apple", "zuchini" }));
         }
@@ -57,10 +57,10 @@ namespace LINQ.Exercises
         // remember has to be descending:
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void OrderWordsByFirstLetterDescendingAlphabetically_Return5Words()
         {
-            IEnumerable<string> result = TestData.OrderByWordsExtended;
+            IEnumerable<string> result = TestData.OrderByWordsExtended.OrderByDescending(word => word)
+                                                                       .Take(5);
 
             Assert.IsTrue(result.SequenceEqual(new[] { "zuchini", "tamarind", "cherry", "blueberry", "apple", }));
         }
@@ -68,20 +68,19 @@ namespace LINQ.Exercises
         // order by the length (i.e. number of characters in each word):
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void OrderWordsByByLength_Return3Words()
         {
-            IEnumerable<string> result = TestData.OrderByWords;
+            IEnumerable<string> result = TestData.OrderByWords.OrderBy(word => word.Length)
+                                                              .Take(3);
 
             Assert.IsTrue(result.SequenceEqual(new[] { "apple", "cherry", "blueberry" }));
         }
 
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void OrderByPeopleByPersonsLastNameAlphabetically_returnOrderedPeople()
         {
-            IEnumerable<TestData.Person> result = TestData.People;
+            IEnumerable<TestData.Person> result = TestData.People.OrderBy(n => n.LastName);
 
             Assert.IsTrue(result.SequenceEqual(new[]
             {
@@ -100,12 +99,11 @@ namespace LINQ.Exercises
         // inheriting from IComparer will do just fine.
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void OrderAlphabeticallyAssumingCaseInsensitivity_ReturnCaseInsensitiveEnumeration()
         {
             string[] words = { "aPPLE", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
 
-            var result = words;
+            var result = words.OrderBy(n => n);
 
             Assert.IsTrue(result.SequenceEqual(new[] {
                 "AbAcUs", "aPPLE", "BlUeBeRrY", "bRaNcH", "cHeRry", "ClOvEr"
@@ -128,32 +126,49 @@ namespace LINQ.Exercises
 
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void OrderAssumingSpecialCondition_ReturnSpecialEnumeration()
         {
-            IEnumerable<string> result = TestData.OrderByWordsExtended;
+            var myCustomComparer = new MyCustomComparer();
+            IEnumerable<string> result = TestData.OrderByWordsExtended.OrderBy(w => w, myCustomComparer);
 
             Assert.IsTrue(result.SequenceEqual(new[] { "apple", "zuchini", "blueberry", "cherry", "tamarind" }));
         }
 
+        class MyCustomComparer : IComparer<string>
+        {
+            public int Compare(string x, string y)
+            {
+                var xLength = calculatedLength(x);
+                var yLength = calculatedLength(y);
+                int comparison = xLength.CompareTo(yLength);
+                return comparison; 
+            }
+            public int calculatedLength(string x)
+            {
+                if(x.Length % 2 == 0)
+                {
+                    return x.Length * 2;
+                }
+                return x.Length;
+            }
+        }
+
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void OrderDoublesFromLargestToSmallest_returnDescendingEnumeration()
         {
             double[] doubles = { 1.7, 2.3, 1.9, 4.1, 2.9 };
 
-            IEnumerable<double> result = doubles;
+            IEnumerable<double> result = doubles.OrderByDescending(n => n);
 
             Assert.IsTrue(result.SequenceEqual(new[] { 4.1, 2.9, 2.3, 1.9, 1.7 }));
         }
 
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void OrderByBirthDatesOldestToYoungest_returnPersonEnumeration()
         {
-            IEnumerable<TestData.Person> result = TestData.People;
+            IEnumerable<TestData.Person> result = TestData.People.OrderBy(n => n.Born);
 
             Assert.IsTrue(result.SequenceEqual(new[] {
                     new TestData.Person("Jean", "Gean", new DateTime(1950, 12, 1)),
@@ -165,10 +180,9 @@ namespace LINQ.Exercises
 
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void OrderByBirthDatesYoungestToOldest_returnPersonEnumeration()
         {
-            IEnumerable<TestData.Person> result = TestData.People;
+            IEnumerable<TestData.Person> result = TestData.People.OrderByDescending(n => n.Born);
 
             Assert.IsTrue(result.SequenceEqual(new[] {
                     new TestData.Person("Jill", "Lill", new DateTime(2001, 5, 21)),
@@ -180,11 +194,11 @@ namespace LINQ.Exercises
 
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void OrderByLengthAndThenAlphabetically_returnStringNumberation()
         {
             string[] digits = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
-            IEnumerable<string> result = digits;
+            IEnumerable<string> result = digits.OrderBy(n => n.Length)
+                                               .ThenBy(n => n);
 
             Assert.IsTrue(result.SequenceEqual(new[] { "one", "six", "two", "five", "four", "nine", "zero", "eight", "seven", "three" }));
         }
@@ -193,7 +207,6 @@ namespace LINQ.Exercises
         // then by alphabetically from a to z, ignoring case
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void OrderByLengthThenAlphabeticallyIgnoringCase_returnStringEnumeration()
         {
             #region hint
@@ -204,7 +217,8 @@ namespace LINQ.Exercises
 
             string[] words = { "aPPLE", "AbAcUs", "bRaNcH", "BlUeBeRrY", "ClOvEr", "cHeRry" };
 
-            IEnumerable<string> result = words;
+            IEnumerable<string> result = words.OrderBy(n => n.Length)
+                                              .ThenBy(n => n.ToUpper());
 
             Assert.IsTrue(result.SequenceEqual(new[] { "aPPLE", "AbAcUs", "bRaNcH", "cHeRry", "ClOvEr", "BlUeBeRrY" }));
         }
@@ -213,7 +227,6 @@ namespace LINQ.Exercises
         // second letter is 'i' that is reversed from the order in the original array.
         [TestMethod]
         [TestCategory("140-OrderBy")]
-        [Ignore]
         public void ComplexQuery_returnStringEnumeration()
         {
             string[] digits = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
