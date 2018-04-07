@@ -24,131 +24,119 @@ namespace LINQ.Exercises
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Count_all_occurences_of_1()
         {
-            int result = TestData.Numbers.Count();
+            int result = TestData.Numbers.Count(n => n == 1);
 
             Assert.AreEqual(2, result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Count_all_animals_having_character_count_equal_to_5()
         {
             // Hint: use nested count
-            int result = TestData.Animals.Count();
+            int result = TestData.Animals.Count(n => n.Length == 5);
 
             Assert.AreEqual(2, result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Sum_all_numbers()
         {
-            int result = TestData.Numbers.Count();
+            int result = TestData.Numbers.Sum();
 
             Assert.AreEqual(-2, result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Sum_all_characters_in_animal_names()
         {
-            int result = TestData.Animals.Count();
+            int result = TestData.Animals.Sum(a => a.Length);
 
             Assert.AreEqual(38, result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Sum_all_birth_years()
         {
-            int result = TestData.People.Count();
+            int result = TestData.People.Sum(p => p.Born.Year);
 
             Assert.AreEqual(7915, result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Find_minimum_number()
         {
-            int result = TestData.Numbers.Count();
+            int result = TestData.Numbers.Min();
 
             Assert.AreEqual(-5, result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Find_length_of_shortest_animal_name()
         {
-            int result = TestData.Animals.Count();
+            int result = TestData.Animals.Min(a => a.Length);
 
             Assert.AreEqual(4, result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Find_earliest_birthday()
         {
-            DateTime result = TestData.People.First().Born;
+            DateTime result = TestData.People.Min(p => p.Born);
 
             Assert.AreEqual(new DateTime(1950, 12, 1), result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Find_maximum_number()
         {
-            int result = TestData.Numbers.Count();
+            int result = TestData.Numbers.Max();
 
             Assert.AreEqual(5, result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Find_length_of_longest_animal_name()
         {
-            int result = TestData.Animals.Count();
+            int result = TestData.Animals.Max(a => a.Length);
 
             Assert.AreEqual(9, result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Find_latest_birthday()
         {
-            DateTime result = TestData.People.First().Born;
+            DateTime result = TestData.People.Max(p => p.Born);
 
             Assert.AreEqual(new DateTime(2001, 5, 21), result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Find_average_of_numbers()
         {
-            double result = TestData.Numbers.Count();
+            double result = TestData.Numbers.Average();
 
             Assert.AreEqual(-0.2, result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
+        
         public void Find_average_of_birth_years()
         {
-            double result = TestData.People.Count();
+            double result = TestData.People.Average(p => p.Born.Year);
 
             Assert.AreEqual(1978.75, result);
         }
@@ -166,18 +154,17 @@ namespace LINQ.Exercises
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
+        
         public void Aggregate_Product_of_all_numbers()
         {
             // Hint: product is a result of multiplication
-            int result = TestData.Numbers.Aggregate((product, nextValue) => 1);
+            int result = TestData.Numbers.Aggregate((product, nextValue) => product * nextValue);
 
             Assert.AreEqual(-1800, result);
         }
 
         [TestMethod]
         [TestCategory("210-Aggregate")]
-        [Ignore]
         public void Aggregate_Secret_formula()
         {
             // secret formula is as follows
@@ -186,7 +173,19 @@ namespace LINQ.Exercises
             // if this day is bigger than 15, then substract 10 from it
             // else add 5 to it
             // and add resulting number to your aggregate
-            int result = TestData.People.Aggregate(0, (sum, person) => 1);
+            int result = TestData.People.Aggregate(256, (sum, person) =>
+            {
+                if(person.Born.Day > 15)
+                {
+                    sum += person.Born.Day - 10;
+                }
+                else
+                {
+                    sum += person.Born.Day + 5;
+                }
+
+                return sum;
+            });
 
             Assert.AreEqual(296, result);
         }

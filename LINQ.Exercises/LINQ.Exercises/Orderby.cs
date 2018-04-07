@@ -231,7 +231,9 @@ namespace LINQ.Exercises
         {
             string[] digits = { "zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine" };
 
-            IEnumerable<string> result = digits;
+            IEnumerable<string> result = digits.Where(d => d[1] == 'i')
+                                               .Reverse();
+                                               
 
             Assert.IsTrue(result.SequenceEqual(new[] { "nine", "eight", "six", "five" }));
         }

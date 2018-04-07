@@ -28,10 +28,9 @@ namespace LINQ.Exercises
         // Get the first two numbers in the array
         [TestMethod]
         [TestCategory("130-Partition")]
-        [Ignore]
         public void GetFirstTwoNumbers_returns_2_ints()
         {
-            IEnumerable<int> result = TestData.PartitionNumbers;
+            IEnumerable<int> result = TestData.PartitionNumbers.Take(2);
 
             Assert.IsTrue(result.SequenceEqual(new[] { 5, 4 }));
         }
@@ -39,10 +38,9 @@ namespace LINQ.Exercises
         // return everything in the array but the first four numbers
         [TestMethod]
         [TestCategory("130-Partition")]
-        [Ignore]
         public void IgnoreFirstFourNumbers_returns_4_ints()
         {
-            IEnumerable<int> result = TestData.PartitionNumbers;
+            IEnumerable<int> result = TestData.PartitionNumbers.Skip(4);
 
             Assert.IsTrue(result.SequenceEqual(new[] { 9, 8, 6, 7, 2, 0 }));
         }
@@ -51,10 +49,9 @@ namespace LINQ.Exercises
         // until a number is hit that is not less than 6
         [TestMethod]
         [TestCategory("130-Partition")]
-        [Ignore]
         public void Enumerate_Till_You_Get_A_Number_NotLessThanSix_returns_4_ints()
         {
-            IEnumerable<int> result = TestData.PartitionNumbers;
+            IEnumerable<int> result = TestData.PartitionNumbers.TakeWhile(n => n < 6);
 
             Assert.IsTrue(result.SequenceEqual(new[] { 5, 4, 1, 3 }));
         }
@@ -63,10 +60,12 @@ namespace LINQ.Exercises
         // until a number is hit that is less than its position in the array
         [TestMethod]
         [TestCategory("130-Partition")]
-        [Ignore]
         public void Enumerate_Till_A_Number_Hit_Which_is_less_than_its_own_array_position_returns_2_ints()
         {
-            IEnumerable<int> result = TestData.PartitionNumbers;
+
+            var numbersInList = TestData.PartitionNumbers.ToList();
+            
+            IEnumerable<int> result = TestData.PartitionNumbers.TakeWhile(n => n > numbersInList.IndexOf(n));
 
             Assert.IsTrue(result.SequenceEqual(new[] { 5, 4 }));
         }
@@ -75,10 +74,9 @@ namespace LINQ.Exercises
         // starting from the first element divisible by 3
         [TestMethod]
         [TestCategory("130-Partition")]
-        [Ignore]
         public void GetElementsOfArrayStartingFromTheFirstElementDivisibleByThree_Return7ints()
         {
-            IEnumerable<int> result = TestData.PartitionNumbers;
+            IEnumerable<int> result = TestData.PartitionNumbers.SkipWhile(n => n % 3 != 0);
 
             Assert.IsTrue(result.SequenceEqual(new[] { 3, 9, 8, 6, 7, 2, 0 }));
         }
@@ -87,10 +85,12 @@ namespace LINQ.Exercises
         // starting from the first element less than its position.
         [TestMethod]
         [TestCategory("130-Partition")]
-        [Ignore]
         public void GetElementsStartingFromFirstElementLessThanItsPosition_Return8ints()
         {
-            IEnumerable<int> result = TestData.PartitionNumbers;
+
+            var numbersInList = TestData.PartitionNumbers.ToList();
+
+            IEnumerable<int> result = TestData.PartitionNumbers.SkipWhile(n => n > numbersInList.IndexOf(n));
 
             Assert.IsTrue(result.SequenceEqual(new[] { 1, 3, 9, 8, 6, 7, 2, 0 }));
         }
