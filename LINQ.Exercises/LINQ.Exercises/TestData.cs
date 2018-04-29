@@ -39,6 +39,20 @@ namespace LINQ.Exercises
             }
         }
 
+        internal static IList<Person> People2
+        {
+            get
+            {
+                return new[]
+                {
+                    new Person("Jackie", "Tuck", new DateTime(1990, 3, 12)),
+                    new Person("Jeanie", "Gean", new DateTime(1950, 12, 1)),
+                    new Person("Jillian", "Lill", new DateTime(2001, 5, 21)),
+                    new Person("Jerimaiah", "Jilly", new DateTime(1974, 9, 16)),
+                };
+            }
+        }
+
         internal class Person
         {
             public string FirstName { get; private set; }

@@ -23,12 +23,17 @@ namespace LINQ.Exercises
         // There are many ways to solve this.
         [TestMethod]
         [TestCategory("900-CombinedOperations")]
-        [Ignore]
         public void GetCharactersCommonToEveryonesFirstNamesUsingSetElements_ReturnCharEnumerable()
         {
-            // ReSharper disable CollectionNeverUpdated.Local
-            var commonCharacters = new List<char>(); // please edit/complete so that the test passes
-            // ReSharper restore CollectionNeverUpdated.Local
+            var peoples = TestData.People2;
+
+            var commonCharacters = peoples[0].FirstName.ToCharArray(); 
+
+            for (int i = 1; i < peoples.Count; i++)
+            {
+                var charArray = peoples[i].FirstName.ToCharArray();
+                commonCharacters = charArray.Intersect(commonCharacters).ToArray();
+            }
 
             Assert.IsTrue(commonCharacters.OrderBy(x => x).SequenceEqual(new[] { 'a', 'i', 'J' }.OrderBy(x => x)));
         }
@@ -41,12 +46,37 @@ namespace LINQ.Exercises
         // But you are not allowed to use set operations.
         [TestMethod]
         [TestCategory("900-CombinedOperations")]
-        [Ignore]
         public void GetCharactersCommonToEveryonesFirstNamesNotUsingSetOperations_ReturnCharEnumerable()
         {
-            IEnumerable<char> result = new List<char>();
+            var peoples = TestData.People2;
 
-            Assert.IsTrue(result.OrderBy(x => x).SequenceEqual(new[] { 'a', 'i', 'J' }.OrderBy(x => x)));
+            var commonCharacters = peoples[0].FirstName.ToCharArray().ToList();
+
+            for (int i = 1; i < peoples.Count; i++)
+            {
+                var charArray = peoples[i].FirstName.ToCharArray().ToList();
+                var doRemove = true;
+                var removingList = new List<char>();
+
+                foreach (var letter in commonCharacters)
+                {
+                    foreach (var characters in charArray)
+                    {
+                        if (letter == characters) { doRemove = false; break; }
+                    }
+                    if(doRemove)
+                    {
+                        removingList.Add(letter);
+                    }
+                    doRemove = true;
+                }
+                foreach (var letter in removingList)
+                {
+                    commonCharacters.Remove(letter);
+                }
+            }
+
+            Assert.IsTrue(commonCharacters.OrderBy(x => x).SequenceEqual(new[] { 'a', 'i', 'J' }.OrderBy(x => x)));
         }
 
     }

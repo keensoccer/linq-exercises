@@ -93,6 +93,23 @@ namespace LINQ.Exercises
             int[] numbersB = { 1, 3, 5, 7, 8 };
             // ReSharper restore UnusedVariable
 
+            #region NonLinqSolution
+            /*
+            var result = new List<int>();
+
+            foreach (var numA in numbersA)
+            {
+                foreach (var numB in numbersB)
+                {
+                    if(numA == numB)
+                    {
+                        result.Add(numA);
+                    }
+                }
+            }
+            */
+            #endregion
+
             IEnumerable<int> result = numbersA.Intersect(numbersB);
 
             Assert.IsTrue(result.SequenceEqual(new[] { 5, 8 }));
@@ -107,6 +124,18 @@ namespace LINQ.Exercises
             int[] numbersB = { 1, 3, 5, 7, 8 };
             // ReSharper restore UnusedVariable
 
+            #region NonLinqSolution
+            /*
+            var result = new List<int>();
+
+            foreach (var numA in numbersA)
+            {
+                if(numbersB.Contains(numA)) { }
+                else result.Add(numA);
+            }
+            */
+            #endregion  
+
             IEnumerable<int> result = numbersA.Except(numbersB);
 
             Assert.IsTrue(result.OrderBy(x => x).SequenceEqual(new[] { 0, 2, 4, 6, 9 }.OrderBy(x => x)));
@@ -120,6 +149,18 @@ namespace LINQ.Exercises
             // ReSharper disable UnusedVariable
             string[] lettersB = { "a", "c", "e" };
             // ReSharper restore UnusedVariable
+
+            #region NonLinqSolution
+            /*
+            var result = new List<string>();
+
+            foreach (var letterA in lettersA)
+            {
+                if(lettersB.Contains(letterA)) { }
+                else result.Add(letterA);
+            }
+            */
+            #endregion
 
             IEnumerable<string> result = lettersA.Except(lettersB);
 
